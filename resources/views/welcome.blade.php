@@ -1,16 +1,11 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Inicio</title>
+<x-layout meta-title="Inicio" meta-description="Descripción de la página de inicio">
 
-    </head>
-    <body class="font-sans antialiased dark:bg-black dark:text-white/50">
+    <h1>Inicio</h1>
 
-        <h1>Inicio</h1>
-        @include('partials.navigation')
+    <x-slot:sidebar>
+        <p>Home sidebar</p>
+    </x-slot:sidebar>
 
-    </body>
-</html>
+</x-layout>
+
+
