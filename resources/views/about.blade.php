@@ -9,5 +9,6 @@
 </head>
 <body class="font-sans antialiased dark:bg-black dark:text-white/50">
 <h1>About</h1>
+@include('partials.navigation')
 </body>
 </html>
