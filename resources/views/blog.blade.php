@@ -6,7 +6,8 @@
 
     @foreach($posts as $post)
 
-        <h2>{{ $post["title"] }}</h2>
+        <h2>{{ $post->title }}</h2>
+        <h4>Indice: {{ $post->id }}</h4>
 
     @endforeach
 
