@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-class PostController
+use Illuminate\Http\Request;
+
+class PostController extends Controller
 {
 
-    public function __invoke() // metodo magico que es automaticamnete invocado si solo existe el
+    public function index()
     {
         $posts = [
             ["title" => "Post 1"],

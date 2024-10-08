@@ -8,7 +8,7 @@ Route::view('/', "welcome")->name('home');
 
 Route::view('contacto', "contact")->name('contact');
 
-Route::get('blog', PostController::class)->name('blog'); // no se especifica el método porque se asume que es el __invoke el que se llama
+Route::get('blog', [PostController::class, 'index'])->name('blog');
 
 Route::view('nosotros', "about")->name('about');
 
