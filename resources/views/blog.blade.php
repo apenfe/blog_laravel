@@ -9,6 +9,8 @@
         <h2>{{ $post->title }}</h2>
         <h4>Indice: {{ $post->id }}</h4>
 
+        <p>Indice: {{ $post->body }}</p>
+
     @endforeach
 
 </x-layout>
