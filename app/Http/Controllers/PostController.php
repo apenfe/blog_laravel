@@ -14,4 +14,9 @@ class PostController extends Controller
         return view('blog', compact('posts'));
     }
 
+    public function show(Post $post)
+    {
+        return view('post', compact('post'));
+    }
+
 }

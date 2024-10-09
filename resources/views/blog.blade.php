@@ -6,10 +6,7 @@
 
     @foreach($posts as $post)
 
-        <h2>{{ $post->title }}</h2>
-        <h4>Indice: {{ $post->id }}</h4>
-
-        <p>Indice: {{ $post->body }}</p>
+        <h2><a href="/blog/{{ $post->id }}">{{ $post->title }}</a></h2>
 
     @endforeach
 
