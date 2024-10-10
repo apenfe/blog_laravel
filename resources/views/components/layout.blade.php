@@ -13,6 +13,12 @@
 
 <x-partials.navigation />
 
+@session('status')
+<div>
+    {{ $value }}
+</div>
+@endsession
+
 {{ $slot }} {{-- This is where the content will be injected ANONIMO --}}
 
 @isset($sidebar)
