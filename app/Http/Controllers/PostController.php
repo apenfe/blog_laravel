@@ -11,12 +11,13 @@ class PostController extends Controller
     {
         $posts = Post::all();
 
-        return view('blog', compact('posts'));
+        return view('posts.index', compact('posts'));
     }
 
     public function show(Post $post)
     {
-        return view('post', compact('post'));
+        // model binding se enlace clave primaria con el modelo
+        return view('posts.show', compact('post'));
     }
 
 }

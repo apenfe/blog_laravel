@@ -8,8 +8,8 @@ Route::view('/', "welcome")->name('home');
 
 Route::view('contacto', "contact")->name('contact');
 
-Route::get('blog', [PostController::class, 'index'])->name('blog');
-Route::get('blog/{post}', [PostController::class, 'show'])->name('posts.show');
+Route::get('blog', [PostController::class, 'index'])->name('posts.index');
+Route::get('blog/{post}', [PostController::class, 'show'])->name('posts.show'); // model binding
 
 Route::view('nosotros', "about")->name('about');
 
