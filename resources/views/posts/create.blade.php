@@ -2,29 +2,25 @@
 
     <h1>Create a new post</h1>
 
-    @foreach($errors->all() as $error)
-        <p>{{ $error }}</p>
-    @endforeach
-
     <form method="POST" action="{{ route('posts.store') }}">
         @csrf
 
         <label>
             Title <br>
-            <input type="text" name="title" placeholder="Inserte un titulo">
+            <input type="text" name="title" placeholder="Inserte un titulo" value="{{ old('title') }}">
 
             @error('title')
-                <p><strong style="color: red">{{ $message }}</strong></p>
+                <p><small style="color: red">{{ $message }}</small></p>
             @enderror
         </label>
         <br>
 
         <label>
             Body <br>
-            <textarea name="body" placeholder="Inserte el body del post"></textarea>
+            <textarea name="body" placeholder="Inserte el body del post">{{ old('body') }}</textarea>
 
             @error('body')
-                <p><strong style="color: red">{{ $message }}</strong></p>
+                <p><small style="color: red">{{ $message }}</small></p>
             @enderror
         </label>
         <br>
