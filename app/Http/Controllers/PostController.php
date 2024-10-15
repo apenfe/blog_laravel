@@ -49,4 +49,21 @@ class PostController extends Controller
 
     }
 
+    public function update(Request $request, Post $post)
+    {
+        $request->validate([
+            'title' => 'required | min:5 | max:100',
+            'body' => 'required | min:5 | max:500'
+        ]);
+
+        $post->title = $request->input('title');
+        $post->body = $request->input('body');
+        $post->update();
+
+        session()->flash('status', 'Post modificado correctamente');
+
+        return to_route('posts.index');
+
+    }
+
 }

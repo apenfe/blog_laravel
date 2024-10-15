@@ -13,6 +13,7 @@ Route::get('blog/create', [PostController::class, 'create'])->name('posts.create
 Route::post('blog', [PostController::class, 'store'])->name('posts.store');
 Route::get('blog/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
 Route::get('blog/{post}', [PostController::class, 'show'])->name('posts.show'); // model binding
+Route::patch('blog/{post}', [PostController::class, 'update'])->name('posts.update');
 
 
 Route::view('nosotros', "about")->name('about');
