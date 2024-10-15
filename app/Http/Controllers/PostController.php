@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdatePostRequest;
+use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -28,21 +30,11 @@ class PostController extends Controller
         ]);
     }
 
-    public function store(Request $request) {
+    public function store(StorePostRequest $request) {
 
-        $request->validate([
-            'title' => 'required | min:5 | max:100',
-            'body' => 'required | min:5 | max:500'
-        ]);
+        Post::create($request->validated());
 
-        $post = new Post();
-        $post->title = $request->input('title');
-        $post->body = $request->input('body');
-        $post->save();
-
-        session()->flash('status', 'Post creado correctamente');
-
-        return to_route('posts.index');
+        return to_route('posts.index')->with('status', 'Post creado correctamente');
     }
 
     public function edit(Post $post)
@@ -51,20 +43,12 @@ class PostController extends Controller
 
     }
 
-    public function update(Request $request, Post $post)
+    public function update(UpdatePostRequest $request, Post $post)
     {
-        $request->validate([
-            'title' => 'required | min:5 | max:100',
-            'body' => 'required | min:5 | max:500'
-        ]); // si falla se vuelve al propio formulario con los errores
 
-        $post->title = $request->input('title');
-        $post->body = $request->input('body');
-        $post->update();
+        $post->update($request->validated());
 
-        session()->flash('status', 'Post modificado correctamente');
-
-        return to_route('posts.show', $post);
+        return to_route('posts.show', $post)->with('status', 'Post modificado correctamente');
 
     }
 
