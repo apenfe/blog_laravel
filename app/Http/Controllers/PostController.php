@@ -54,7 +54,7 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required | min:5 | max:100',
             'body' => 'required | min:5 | max:500'
-        ]);
+        ]); // si falla se vuelve al propio formulario con los errores
 
         $post->title = $request->input('title');
         $post->body = $request->input('body');
@@ -62,7 +62,7 @@ class PostController extends Controller
 
         session()->flash('status', 'Post modificado correctamente');
 
-        return to_route('posts.index');
+        return to_route('posts.show', $post);
 
     }
 
