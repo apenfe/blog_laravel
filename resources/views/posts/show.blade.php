@@ -1,5 +1,12 @@
-<h1>{{$post->title}}</h1>
+<x-layout :meta-title="$post->title" :meta-description="$post->body">
 
-<p>{{$post->body}}</p>
+    <h1>{{ __('Show post') }}</h1>
 
-<a href="{{route('posts.index')}}">Go back</a>
+    <h2>{{$post->title}}</h2>
+
+    <p>{{$post->body}}</p>
+
+    <hr>
+    <a href="{{ route('posts.index') }}">{{ __('Back') }}</a>
+
+</x-layout>

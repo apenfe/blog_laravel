@@ -1,6 +1,6 @@
 <x-layout :meta-title="$post->title" :meta-description="$post->body">
 
-    <h1>Edit post</h1>
+    <h1>{{ __('Edit post') }}</h1>
     <a href="{{ route('posts.index') }}">{{ __('Back') }}</a>
     <hr>
 
@@ -14,5 +14,8 @@
         <br>
 
     </form>
+
+    <hr>
+    <a href="{{ route('posts.index') }}">{{ __('Back') }}</a>
 
 </x-layout>
