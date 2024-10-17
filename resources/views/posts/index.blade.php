@@ -1,9 +1,13 @@
 <x-layout meta-title="Blog" meta-description="Descripción de la página del Blog">
+
     <div class="mx-auto mt-4 max-w-6xl">
+
         <h1 class="my-4 text-center font-serif text-4xl font-extrabold text-sky-600 md:text-5xl">
             Blog
         </h1>
-        <div class="flex items-center justify-center">
+
+        @auth
+            <div class="flex items-center justify-center">
             <a
                 href="{{ route('posts.create') }}"
                 class="group rounded-full bg-sky-600 p-2 text-sky-100 shadow-lg duration-300 hover:bg-sky-700 active:bg-sky-800"
@@ -26,6 +30,8 @@
                 </svg>
             </a>
         </div>
+        @endauth
+
         <div
             class="mx-auto mt-8 grid max-w-6xl gap-4 md:grid-cols-2 lg:grid-cols-3"
         >
