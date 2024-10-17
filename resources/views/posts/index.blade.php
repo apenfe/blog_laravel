@@ -1,6 +1,11 @@
 <x-layout meta-title="Blog" meta-description="Descripción de la página del blog">
 
-    <h1>Blog</h1>
+    <div class="mx-auto mt-4 max-w-6xl">
+        <h1 class="mt-4 mb-8 text-center font-serif text-4xl font-extrabold text-sky-600 md:text-5xl">
+            {{ __('Blog') }}
+        </h1>
+    </div>
+
     <a href="{{ route('posts.create') }}">{{ __('Create a new post') }}</a>
     {{-- @dump($posts) Dump the $posts variable que viene a ser la clave, si la clave es articulos seria con $articulos --}}
 
