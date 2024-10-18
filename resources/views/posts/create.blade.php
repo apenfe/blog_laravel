@@ -11,11 +11,11 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <form method="POST" action="{{ route('posts.store') }}">
-                        @csrf
 
                         @include('posts.form-fields')
 
-                        <input type="submit" value="{{ __('Submit') }}">
+                        <x-primary-button class="mt-4" type="submit">{{ __('Submit') }}</x-primary-button>
+                        @csrf
 
                     </form>
                 </div>

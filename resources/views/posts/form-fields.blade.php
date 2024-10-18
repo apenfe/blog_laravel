@@ -1,21 +1,19 @@
-<label>
-    {{ __('Title') }}
-    <br>
-    <input type="text" name="title" placeholder="Inserte un titulo" value="{{ old('title', $post->title) }}">
+<div>
+    <x-input-label for="title" :value="__('Title')" />
+    <x-text-input id="title"
+                  name="title"
+                  type="text"
+                  value="{{ old('title', $post->title) }}"
+                  class="block w-full mt-1" />
+    <x-input-error :messages="$errors->get('title')" class="mt-2" />
+</div>
 
-    @error('title')
-    <p><small style="color: red">{{ $message }}</small></p>
-    @enderror
-</label>
-<br>
 
-<label>
-    {{ __('Body') }}
-    <br>
-    <textarea name="body" placeholder="Inserte el body del post">{{ old('body', $post->body) }}</textarea>
-
-    @error('body')
-    <p><small style="color: red">{{ $message }}</small></p>
-    @enderror
-</label>
-<br>
+<div>
+    <x-input-label for="body" :value="__('Body')" />
+    <x-textarea id="body"
+                name="body"
+                class="block w-full mt-1"
+    >{{ old('body', $post->body) }}</x-textarea>
+    <x-input-error :messages="$errors->get('body')" class="mt-2" />
+</div>
