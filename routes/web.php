@@ -28,9 +28,9 @@ require __DIR__.'/auth.php';
  * En la vista welcome: no funciona el boton del usuario, añadir desplegable para hacer login o register si no estas logueado
  * si se esta logueado, hacer el logout o acceder a datps del usuario
  *
- * 1º tarea: crear en el layout de invitado un menu para poder iniciar sesion y registrarse
+ * 1º tarea: crear en el layout de invitado un menu para poder iniciar sesión y registrarse
  *
- * 2º En la vista blog, solo debemos de ver los posts que esten publicados, se debe añadir un campo de published at...
+ * 2º En la vista blog, solo debemos de ver los posts que estén publicados, se debe añadir un campo de published at...
  *
  * 3º añadir campo userid a tabla de post para tener el creador del post. Habra que definir la relacion 1 a n entre usuarios y posts
  * se debe modificar el controlador del index, para que ahora ya no aparezcan todos los post, solo los que la fecha de pub sea anterior a la fecha actual
