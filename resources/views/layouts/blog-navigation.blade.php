@@ -102,9 +102,16 @@
 
             <!-- Avatar Menu -->
             <div class="relative pt-1">
-                <button id="toggle-login-menu" class="ml-4 rounded-full text-slate-500 transition-colors hover:text-sky-500 focus:ring-2 focus:ring-slate-200 focus:ring-offset-1">
-                    <img class="h-6 w-6 rounded-full" src="https://ui-avatars.com/api?name=Jorge+Garcia" alt="Jorge García"/>
-                </button>
+
+                @if (auth()->check())
+                    <button id="toggle-login-menu" class="ml-4 rounded-full text-slate-500 transition-colors hover:text-sky-500 focus:ring-2 focus:ring-slate-200 focus:ring-offset-1">
+                        <img class="h-6 w-6 rounded-full" src="https://ui-avatars.com/api?name={{ auth()->user()->name ?? 'X' }}+{{ auth()->user()->lastname ?? 'X' }}" alt="{{ auth()->user()->name }}{{auth()->user()->lastname}}"/>
+                    </button>
+                @else
+                    <button id="toggle-login-menu" class="ml-4 rounded-full text-slate-500 transition-colors hover:text-sky-500 focus:ring-2 focus:ring-slate-200 focus:ring-offset-1">
+                        <img class="h-6 w-6 rounded-full" src="https://ui-avatars.com/api?name=X+X" alt="Non authorized"/>
+                    </button>
+                @endif
 
                 @auth
                 <!-- Opciones de usuario logueado -->
