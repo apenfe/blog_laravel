@@ -56,6 +56,14 @@
                 >
                     Contact
                 </a>
+                @auth
+                <a
+                    class="px-3 py-2 {{ request()->routeIs('admin') ? 'text-sky-500' : 'text-slate-600 transition-colors hover:text-sky-500 dark:text-slate-400 dark:hover:text-sky-500' }}"
+                    href="{{ route('admin',['user' => auth()->user()->id]) }}"
+                >
+                    Mis posts
+                </a>
+                @endauth
             </div>
         </div>
 

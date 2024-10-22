@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -11,6 +12,8 @@ Route::view('contacto', "contact")->name('contact');
 Route::view('nosotros', "about")->name('about');
 
 Route::resource('blog', PostController::class)->names('posts')->parameters(['blog' => 'post']);
+
+Route::get('admin/{user}', [AdminController::class, 'index'])->name('admin')->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
