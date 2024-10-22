@@ -85,3 +85,9 @@ if(themeMenu){
 
 }
 
+let menuLogin = document.getElementById("login-menu");
+let botonLogin = document.getElementById("toggle-login-menu");
+
+botonLogin.addEventListener("click", () => {
+    menuLogin.classList.toggle("hidden");
+});

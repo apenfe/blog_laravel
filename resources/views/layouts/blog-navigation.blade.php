@@ -99,10 +99,24 @@
                     </button>
                 </div>
             </div>
-            <!-- Avatar -->
-            <button class="ml-4 rounded-full text-slate-500 transition-colors hover:text-sky-500 focus:ring-2 focus:ring-slate-200 focus:ring-offset-1">
-                <img class="h-6 w-6 rounded-full" src="https://ui-avatars.com/api?name=Jorge+Garcia" alt="Jorge García"/>
-            </button>
+
+            <!-- Avatar Menu -->
+            <div class="relative pt-1">
+                <button id="toggle-login-menu" class="ml-4 rounded-full text-slate-500 transition-colors hover:text-sky-500 focus:ring-2 focus:ring-slate-200 focus:ring-offset-1">
+                    <img class="h-6 w-6 rounded-full" src="https://ui-avatars.com/api?name=Jorge+Garcia" alt="Jorge García"/>
+                </button>
+                <!-- Opciones de usuario -->
+                <div id="login-menu" class="absolute right-0 z-20 hidden w-28 overflow-hidden rounded-md bg-white/90 shadow-lg dark:bg-slate-800/90">
+                    <!-- LOGIN -->
+                    <button class="flex w-full items-center space-x-2 px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 focus:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-900 dark:focus:bg-slate-900">
+                        <a href="{{ route('login') }}">Login</a>
+                    </button>
+                    <!-- Register -->
+                    <button class="flex w-full items-center space-x-2 px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 focus:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-900 dark:focus:bg-slate-900">
+                        <a href="{{ route('register') }}">Register</a>
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 
