@@ -23,7 +23,8 @@ class StorePostRequest extends FormRequest
     {
         return [
             'title' => 'required | min:5 | max:100',
-            'body' => 'required | min:5 | max:500'
+            'body' => 'required | min:5 | max:500',
+            'published_at' => 'nullable | date'
         ];
     }
 }
