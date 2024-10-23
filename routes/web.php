@@ -14,6 +14,8 @@ Route::view('nosotros', "about")->name('about');
 Route::resource('blog', PostController::class)->names('posts')->parameters(['blog' => 'post']);
 
 Route::get('admin/{user}', [AdminController::class, 'index'])->name('admin')->middleware('auth');
+Route::get('admin/{post}/edit', [AdminController::class, 'edit'])->name('admin.edit')->middleware('auth');
+Route::delete('admin/{post}', [AdminController::class, 'destroy'])->name('admin.destroy')->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

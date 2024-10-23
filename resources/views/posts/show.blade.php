@@ -11,17 +11,18 @@
             />
         </div>--}}
         <!--Botones de edición y borrado-->
-        @auth()
+        @if(auth()->user()->id == $post->user_id)
+
             <div class="flex items-center justify-center space-x-10">
                 <a
                     class="rounded-full bg-sky-600 p-4 text-sky-100 shadow-lg hover:bg-sky-700 active:bg-sky-800"
-                    href="{{ route('posts.edit', $post) }}"
+                    href="{{ route('admin.edit', $post) }}"
                 >
                     <svg class="h-6 w-6" data-slot="icon" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"></path>
                     </svg>
                 </a>
-                <form action="{{ route('posts.destroy', $post) }}" method="POST">
+                <form action="{{ route('admin.destroy', $post) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="rounded-full bg-red-600 p-4 text-red-100 shadow-lg hover:bg-red-700 active:bg-red-800">
@@ -31,7 +32,8 @@
                     </button>
                 </form>
             </div>
-        @endauth
+
+        @endif
 
         <!--Titulo y categoría-->
         <div class="flex-1 space-y-3 pt-4 md:text-center">

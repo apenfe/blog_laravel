@@ -47,6 +47,16 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
+
+        /*
+         * cuidado con esto
+         */
+
+        // debo comprobar si el post es del usuario logueado
+        if (auth()->id() !== $post->user_id) {
+            abort(403);
+        }
+
         return view('posts.edit', compact('post'));
 
     }
@@ -62,6 +72,12 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
+
+        // debo comprobar si el post es del usuario logueado
+        if (auth()->id() !== $post->user_id) {
+            abort(403);
+        }
+
         $post->delete();
 
         return to_route('posts.index')->with('status', 'Post eliminado correctamente');
