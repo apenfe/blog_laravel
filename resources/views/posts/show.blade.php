@@ -11,6 +11,7 @@
             />
         </div>--}}
         <!--Botones de edición y borrado-->
+        @auth()
         @if(auth()->user()->id == $post->user_id)
 
             <div class="flex items-center justify-center space-x-10">
@@ -34,6 +35,7 @@
             </div>
 
         @endif
+        @endauth
 
         <!--Titulo y categoría-->
         <div class="flex-1 space-y-3 pt-4 md:text-center">
