@@ -17,7 +17,7 @@ class PostController extends Controller
     public function index()
     {
 
-        $posts = Post::where('published_at', '<=', now())->get();
+        $posts = Post::where('published_at', '<=', now())->paginate(6);
 
         return view('posts.index', compact('posts'));
     }

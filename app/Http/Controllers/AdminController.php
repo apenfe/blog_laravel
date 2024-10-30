@@ -12,7 +12,7 @@ class AdminController extends Controller
     public function index(User $user)
     {
 
-        $posts = Post::where('user_id', $user->id)->get();
+        $posts = Post::where('user_id', $user->id)->paginate(6);
 
         return view('admin-posts', compact('posts'));
     }
