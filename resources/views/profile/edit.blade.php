@@ -1,9 +1,10 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+<x-blog-layout>
+
+    <div class="mx-auto mt-4 max-w-6xl">
+        <h1 class="mt-4 text-center font-serif text-4xl font-extrabold text-sky-600 md:text-5xl">
             {{ __('Profile') }}
-        </h2>
-    </x-slot>
+        </h1>
+    </div>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
@@ -26,4 +27,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-blog-layout>

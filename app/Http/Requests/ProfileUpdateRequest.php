@@ -26,6 +26,27 @@ class ProfileUpdateRequest extends FormRequest
                 'max:255',
                 Rule::unique(User::class)->ignore($this->user()->id),
             ],
+            'avatar' => ['nullable', 'file', 'image', 'max:2048'], // Agregamos 'file' explícitamente
         ];
+    }
+
+    // Agregar mensajes personalizados para mejor depuración
+    public function messages(): array
+    {
+        return [
+            'avatar.file' => 'El archivo debe ser una imagen válida.',
+            'avatar.image' => 'El archivo debe ser una imagen (jpeg, png, jpg, gif).',
+            'avatar.max' => 'La imagen no debe ser mayor a 2MB.',
+        ];
+    }
+
+    // Asegurarnos de que el request está configurado para manejar archivos
+    protected function prepareForValidation()
+    {
+        if ($this->hasFile('avatar')) {
+            $this->merge([
+                'avatar' => $this->file('avatar')
+            ]);
+        }
     }
 }

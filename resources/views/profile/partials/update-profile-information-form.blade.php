@@ -13,7 +13,7 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
 
@@ -51,6 +51,27 @@
                     @endif
                 </div>
             @endif
+        </div>
+
+        <div>
+            <x-input-label for="avatar" :value="__('Avatar')" />
+            @if( $user->avatar )
+                <div class="mt-2">
+                    <img src="{{ Storage::url($user->avatar) }}" alt="Avatar actual" class="w-20 h-20 rounded-full object-cover">
+                </div>
+
+            @else
+
+
+
+
+            @endif
+            <input type="file"
+                   id="avatar"
+                   name="avatar"
+                   class="mt-1 block w-full"
+                   accept="image/*">
+            <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
         </div>
 
         <div class="flex items-center gap-4">
