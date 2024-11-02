@@ -39,25 +39,25 @@
     </div>
 
     <!--Autor-->
-    {{--<div class="flex space-x-2 p-5">
+    <div class="flex space-x-2 p-5">
         <!--Avatar-->
-        <img
-            class="h-10 w-10 rounded-full"
-            src="https://ui-avatars.com/api?name=Roel Aufderehar"
-            alt="Roel Aufderehar"
-        />
+        @if( $post->user->avatar )
+            <img class="h-6 w-6 rounded-full" src="{{ Storage::url($post->user->avatar) }}" alt="{{ $post->user->name }}{{$post->user->lastname}}"/>
+        @else
+            <img class="h-6 w-6 rounded-full" src="https://ui-avatars.com/api?name={{ $post->user->name ?? 'X' }}+{{ $post->user->lastname ?? 'X' }}" alt="{{ $post->user->name }}{{$post->user->lastname}}"/>
+        @endif
 
         <div class="flex flex-col justify-center">
             <!--Nombre-->
             <span
                 class="text-sm font-semibold leading-4 text-slate-600 dark:text-slate-400"
             >
-                Roel Aufderehar
+                {{ $post->user->name }} {{ $post->user->lastname }}
             </span>
             <!--Fecha-->
             <span class="text-sm text-slate-500">
-                    Mar 16, 2023
+                {{ $post->created_at->day }} {{ $post->created_at->monthName }} {{ $post->created_at->year }}
             </span>
         </div>
-    </div>--}}
+    </div>
 </article>

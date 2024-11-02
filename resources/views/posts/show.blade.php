@@ -12,9 +12,9 @@
         </div>--}}
         <!--Botones de edición y borrado-->
         @auth()
-        @if(auth()->user()->id == $post->user_id)
-            <x-edit-delete-button :post="$post" />
-        @endif
+            @if(auth()->user()->id == $post->user_id)
+                <x-edit-delete-button :post="$post" />
+            @endif
         @endauth
 
         <!--Titulo y categoría-->
@@ -33,28 +33,27 @@
         </div>
 
         <!--Autor, fecha e imagen-->
-        {{--<div class="flex space-x-2 pt-4 md:mx-auto">
-            <!--Imagen-->
-            <img
-                class="h-10 w-10 rounded-full"
-                src="https://ui-avatars.com/api?name=Jorge García"
-                alt="Jorge García"
-            />
+        <div class="flex space-x-2 p-5">
+            <!--Avatar-->
+            @if( $post->user->avatar )
+                <img class="h-6 w-6 rounded-full" src="{{ Storage::url($post->user->avatar) }}" alt="{{ $post->user->name }}{{$post->user->lastname}}"/>
+            @else
+                <img class="h-6 w-6 rounded-full" src="https://ui-avatars.com/api?name={{ $post->user->name ?? 'X' }}+{{ $post->user->lastname ?? 'X' }}" alt="{{ $post->user->name }}{{$post->user->lastname}}"/>
+            @endif
+
             <div class="flex flex-col justify-center">
-            <!--Autor-->
-            <span
-                class="text-sm font-semibold leading-4 text-slate-600 dark:text-slate-400"
-            >
-              Jorge García
-            </span>
-            <!--Fecha-->
+                <!--Nombre-->
                 <span
-                    class="text-sm text-slate-500 dark:text-slate-400"
+                    class="text-sm font-semibold leading-4 text-slate-600 dark:text-slate-400"
                 >
-              Mar 18, 2023
+                {{ $post->user->name }} {{ $post->user->lastname }}
+            </span>
+                <!--Fecha-->
+                <span class="text-sm text-slate-500">
+                {{ $post->created_at->day }} {{ $post->created_at->monthName }} {{ $post->created_at->year }}
             </span>
             </div>
-        </div>--}}
+        </div>
 
         <!--Contenido-->
         <div class="prose prose-slate mx-auto mt-6 dark:prose-invert lg:prose-xl">
