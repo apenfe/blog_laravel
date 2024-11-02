@@ -1,15 +1,14 @@
 <x-blog-layout :meta-title="$post->title" :meta-description="$post->body">
 
-    <article class="mx-auto flex max-w-4xl flex-col">
+    <article class="mx-auto flex max-w-4xl flex-col ">
         <!--Imagen-->
-        {{--<div class="h-52 md:h-72 lg:h-96">
+        <div class="h-52 md:h-72 lg:h-96 mb-4">
             <img
                 class="h-full w-full rounded object-cover object-center"
-                src="/img/article-4.jpg"
-                alt="Desarrollo de una API con Laravel siguiendo la
-                especificación JSON:API"
+                src="{{ Storage::url($post->image) }}"
+                alt="{{ $post->title }}"
             />
-        </div>--}}
+        </div>
         <!--Botones de edición y borrado-->
         @auth()
             @if(auth()->user()->id == $post->user_id)

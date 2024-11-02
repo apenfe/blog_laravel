@@ -6,6 +6,7 @@ use App\Http\Requests\UpdatePostRequest;
 use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -39,10 +40,20 @@ class PostController extends Controller
 
     public function store(StorePostRequest $request) {
 
-        $post = new Post($request->validated());
+        // prepare for validation
+        $validated = $request->validated();
+
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('images', 'public');
+        }
+
+        $post = new Post($validated);
         $post->user_id = auth()->id();
         $post->save();
-        //Post::create($request->validated());
+
+       // $post = new Post($request->validated());
+      //  $post->user_id = auth()->id();
+      //  $post->save();
 
         return to_route('posts.index')->with('status', 'Post creado correctamente');
     }
@@ -66,7 +77,24 @@ class PostController extends Controller
     public function update(UpdatePostRequest $request, Post $post)
     {
 
-        $post->update($request->validated());
+       // $post->update($request->validated());
+
+        // prepare for validation
+        $validated = $request->validated();
+
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('images', 'public');
+        }else{
+            $validated['image'] = $post->image;
+        }
+
+        // ver si ya existe otra imagen
+        if ($post->image && $request->hasFile('image')) {
+            Storage::disk('public')->delete($post->image);
+        }
+
+        $post->update($validated);
+
 
         return to_route('posts.show', $post)->with('status', 'Post modificado correctamente');
 

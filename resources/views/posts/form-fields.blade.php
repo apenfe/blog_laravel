@@ -26,3 +26,23 @@
     <x-input-error :messages="$errors->get('published_at')" class="mt-2" />
 </div>
 
+<!--º SE AGREGA EL CAMPO DE IMAGEN -->
+<div>
+    <x-input-label for="image" :value="__('Imagen')" />
+    @if( $post->image )
+        <div class="mt-2">
+            <img src="{{ Storage::url($post->image) }}" alt="Imagen actual" class="w-20 h-20 rounded-full object-cover">
+        </div>
+    @else
+
+    @endif
+    <input type="file"
+           id="image"
+           name="image"
+           class="mt-1 block w-full"
+           accept="image/*">
+    <x-input-error class="mt-2" :messages="$errors->get('image')" />
+</div>
+
+
+

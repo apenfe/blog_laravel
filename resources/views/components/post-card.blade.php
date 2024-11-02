@@ -2,18 +2,18 @@
 
 <article class="flex flex-col overflow-hidden rounded bg-white shadow dark:bg-slate-900">
     <!--Imagen-->
-    {{--<div class="h-52">
+    <div class="h-52">
         <a
             class="duration-300 hover:opacity-75"
-            href="/article.html"
+            href="{{ route('posts.show', $post) }}"
         >
             <img
                 class="h-full w-full object-cover object-center"
-                src="/img/article-1.jpg"
-                alt="Boost your conversion rate"
+                src="{{ Storage::url($post->image) }}"
+                alt="{{ $post->title }}"
             />
         </a>
-    </div>--}}
+    </div>
     <!--Contenido-->
     <div class="flex-1 space-y-3 p-5">
         <!--Categoria-->

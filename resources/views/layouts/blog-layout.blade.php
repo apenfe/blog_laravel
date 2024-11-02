@@ -8,6 +8,9 @@
     <title>{{ $metaTitle }}</title> {{-- Equivale a preguntar si isset($metaTitle) ? $metaTitle : "Default title" --}}
     {{-- ?: es el operador ternario de PHP --}}
     <meta name="description" content="{{ $metaDescription }}">
+
+    <!-- Otros elementos del head -->
+    <link rel="icon" href="{{ asset('gorrito-removebg-preview.png') }}" type="image/x-icon">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
