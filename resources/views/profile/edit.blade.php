@@ -1,4 +1,4 @@
-<x-blog-layout>
+<x-blog-layout meta-title="Perfil" meta-description="Descripción de la página de modificación de perfil">
 
     <div class="mx-auto mt-4 max-w-6xl">
         <h1 class="mt-4 text-center font-serif text-4xl font-extrabold text-sky-600 md:text-5xl">
