@@ -7,11 +7,21 @@
             class="duration-300 hover:opacity-75"
             href="{{ route('posts.show', $post) }}"
         >
-            <img
-                class="h-full w-full object-cover object-center"
-                src="{{ Storage::url($post->image) }}"
-                alt="{{ $post->title }}"
-            />
+            @if( $post->image )
+                <img
+                    class="h-full w-full object-cover object-center"
+                    src="{{ Storage::url($post->image) }}"
+                    alt="{{ $post->title }}"
+                />
+            @else
+                <!-- Imagen por defecto en public images post-->
+                <img
+                    class="h-full w-full object-center object-cover"
+                    src="{{ Storage::url('images/post.png') }}"
+                    alt="{{ $post->title }}"
+                />
+            @endif
+
         </a>
     </div>
     <!--Contenido-->

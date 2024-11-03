@@ -3,11 +3,21 @@
     <article class="mx-auto flex max-w-4xl flex-col ">
         <!--Imagen-->
         <div class="h-52 md:h-72 lg:h-96 mb-4">
-            <img
-                class="h-full w-full rounded object-cover object-center"
-                src="{{ Storage::url($post->image) }}"
-                alt="{{ $post->title }}"
-            />
+
+            @if( $post->image )
+                <img
+                    class="h-full w-full rounded object-cover object-center"
+                    src="{{ Storage::url($post->image) }}"
+                    alt="{{ $post->title }}"
+                />
+            @else
+                <img
+                    class="h-full w-full rounded object-cover object-center"
+                    src="{{ Storage::url('images/post.png') }}"
+                    alt="{{ $post->title }}"
+                />
+            @endif
+
         </div>
         <!--Botones de edición y borrado-->
         @auth()
