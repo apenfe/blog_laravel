@@ -44,7 +44,7 @@
         @endif
         <!--Resumen-->
         <p class="hidden text-slate-500 dark:text-slate-400 md:block">
-            {{ $post->body }}
+            {{ Str::limit($post->body, 35) }}
         </p>
     </div>
 

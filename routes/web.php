@@ -1,9 +1,12 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 
 Route::view('/', "welcome")->name('home');
 
@@ -12,6 +15,8 @@ Route::view('contacto', "contact")->name('contact');
 Route::view('nosotros', "about")->name('about');
 
 Route::resource('blog', PostController::class)->names('posts')->parameters(['blog' => 'post']);
+
+Route::resource('categories', CategoryController::class);
 
 Route::get('admin/{user}', [AdminController::class, 'index'])->name('admin')->middleware('auth');
 Route::get('admin/{post}/edit', [AdminController::class, 'edit'])->name('admin.edit')->middleware('auth');
@@ -28,7 +33,21 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+Route::get('lang/{locale}', function ($locale) {
+    if (!in_array($locale, ['en', 'es'])) {
+        abort(400);
+    }
+
+    // Store locale in both session and cookie
+    Session::put('locale', $locale);
+    App::setLocale($locale);
+
+    return redirect()
+        ->back()
+        ->withCookie(cookie()->forever('locale', $locale));
+})->name('lang')->middleware('web');
+
+require __DIR__ . '/auth.php';
 
 /*
  * En la vista welcome: no funciona el boton del usuario, añadir desplegable para hacer login o register si no estas logueado

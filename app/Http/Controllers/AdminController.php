@@ -11,6 +11,9 @@ class AdminController extends Controller
 
     public function index(User $user)
     {
+        if (auth()->id() !== $user->id) {
+            abort(403);
+        }
 
         $posts = Post::where('user_id', $user->id)->paginate(6);
 

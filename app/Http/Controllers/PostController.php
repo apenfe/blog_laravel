@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdatePostRequest;
 use App\Http\Requests\StorePostRequest;
+use App\Http\Resources\PostResource;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -11,7 +12,8 @@ use Illuminate\Support\Facades\Storage;
 class PostController extends Controller
 {
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('auth')->except('index', 'show');
     }
 
@@ -22,7 +24,9 @@ class PostController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(6);
 
-        return view('posts.index', compact('posts'));
+        return view('posts.index', [
+            'posts' => PostResource::collection($posts)
+        ]);
     }
 
     public function show(Post $post)
@@ -38,7 +42,8 @@ class PostController extends Controller
         ]);
     }
 
-    public function store(StorePostRequest $request) {
+    public function store(StorePostRequest $request)
+    {
 
         // prepare for validation
         $validated = $request->validated();
@@ -51,9 +56,9 @@ class PostController extends Controller
         $post->user_id = auth()->id();
         $post->save();
 
-       // $post = new Post($request->validated());
-      //  $post->user_id = auth()->id();
-      //  $post->save();
+        // $post = new Post($request->validated());
+        //  $post->user_id = auth()->id();
+        //  $post->save();
 
         return to_route('posts.index')->with('status', 'Post creado correctamente');
     }
@@ -71,20 +76,19 @@ class PostController extends Controller
         }
 
         return view('posts.edit', compact('post'));
-
     }
 
     public function update(UpdatePostRequest $request, Post $post)
     {
 
-       // $post->update($request->validated());
+        // $post->update($request->validated());
 
         // prepare for validation
         $validated = $request->validated();
 
         if ($request->hasFile('image')) {
             $validated['image'] = $request->file('image')->store('images', 'public');
-        }else{
+        } else {
             $validated['image'] = $post->image;
         }
 
@@ -97,7 +101,6 @@ class PostController extends Controller
 
 
         return to_route('posts.show', $post)->with('status', 'Post modificado correctamente');
-
     }
 
     public function destroy(Post $post)
@@ -112,5 +115,4 @@ class PostController extends Controller
 
         return to_route('posts.index')->with('status', 'Post eliminado correctamente');
     }
-
 }

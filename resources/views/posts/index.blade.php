@@ -15,7 +15,7 @@
 
             <!--Articulos-->
             @foreach($posts as $post)
-                <x-post-card :post="$post" />
+                <x-post-card :post=" $post " />
             @endforeach
         </div>
 

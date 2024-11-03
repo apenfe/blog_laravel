@@ -36,7 +36,7 @@
                 <a class="px-3 py-2 {{ request()->routeIs('home') ? 'text-sky-500' : 'text-slate-600 transition-colors hover:text-sky-500 dark:text-slate-400 dark:hover:text-sky-500' }}"
                    href="/"
                 >
-                    Home
+                    {{ __('Home') }}
                 </a>
                 <a
                     class="px-3 py-2 {{ request()->routeIs('posts.*') ? 'text-sky-500' : 'text-slate-600 transition-colors hover:text-sky-500 dark:text-slate-400 dark:hover:text-sky-500' }}"
@@ -48,20 +48,20 @@
                     class="px-3 py-2 {{ request()->routeIs('about') ? 'text-sky-500' : 'text-slate-600 transition-colors hover:text-sky-500 dark:text-slate-400 dark:hover:text-sky-500' }}"
                     href="{{ route('about') }}"
                 >
-                    About
+                    {{ __('About') }}
                 </a>
                 <a
                     class="px-3 py-2 {{ request()->routeIs('contact') ? 'text-sky-500' : 'text-slate-600 transition-colors hover:text-sky-500 dark:text-slate-400 dark:hover:text-sky-500' }}"
                     href="{{ route('contact') }}"
                 >
-                    Contact
+                    {{ __('Contact') }}
                 </a>
                 @auth
                 <a
                     class="px-3 py-2 {{ request()->routeIs('admin') ? 'text-sky-500' : 'text-slate-600 transition-colors hover:text-sky-500 dark:text-slate-400 dark:hover:text-sky-500' }}"
                     href="{{ route('admin',['user' => auth()->user()->id]) }}"
                 >
-                    Mis posts
+                    {{ __('My Posts') }}
                 </a>
                 @endauth
             </div>
@@ -108,6 +108,11 @@
                 </div>
             </div>
 
+            <div class="language-switcher ml-4">
+                <a href="{{ route('lang', ['locale' => 'en']) }}" class="text-slate-600 hover:text-sky-500 dark:text-slate-400 dark:hover:text-sky-500 {{ App::getLocale() === 'en' ? 'font-bold' : '' }}">EN</a> | 
+                <a href="{{ route('lang', ['locale' => 'es']) }}" class="text-slate-600 hover:text-sky-500 dark:text-slate-400 dark:hover:text-sky-500 {{ App::getLocale() === 'es' ? 'font-bold' : '' }}">ES</a>
+            </div>
+
             <!-- Avatar Menu -->
             <div class="relative pt-1">
 
@@ -137,13 +142,13 @@
                                 <a href="{{route('logout')}}"
                                                  onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                    Logout
+                                    {{ __('Logout') }}
                                 </a>
                             </form>
                         </button>
                         <!-- Register -->
                         <button class="flex w-full items-center space-x-2 px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 focus:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-900 dark:focus:bg-slate-900">
-                            <a href="{{ route('profile.edit') }}">Perfil</a>
+                            <a href="{{ route('profile.edit') }}">{{ __('Profile') }}</a>
                         </button>
                     </div>
                 @else
@@ -151,11 +156,11 @@
                     <div id="login-menu" class="absolute right-0 z-20 hidden w-28 overflow-hidden rounded-md bg-white/90 shadow-lg dark:bg-slate-800/90">
                         <!-- LOGIN -->
                         <button class="flex w-full items-center space-x-2 px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 focus:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-900 dark:focus:bg-slate-900">
-                            <a href="{{ route('login') }}">Login</a>
+                            <a href="{{ route('login') }}">{{ __('Login') }}</a>
                         </button>
                         <!-- Register -->
                         <button class="flex w-full items-center space-x-2 px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 focus:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-900 dark:focus:bg-slate-900">
-                            <a href="{{ route('register') }}">Register</a>
+                            <a href="{{ route('register') }}">{{ __('Register') }}</a>
                         </button>
                     </div>
                 @endauth
@@ -170,7 +175,7 @@
             href="{{ route('home') }}"
             class="block rounded-md bg-sky-500 px-3 py-2 {{ request()->routeIs('home') ? 'bg-sky-500 text-white' : 'text-slate-700 transition-colors hover:bg-sky-500 hover:text-white dark:text-slate-400 dark:hover:text-white' }}"
         >
-            Home
+            {{ __('Home') }}
         </a>
         <a
             href="{{ route('posts.index') }}"
@@ -182,13 +187,13 @@
             href="{{ route('about') }}"
             class="block rounded-md px-3 py-2 {{ request()->routeIs('about') ? 'bg-sky-500 text-white' : 'text-slate-700 transition-colors hover:bg-sky-500 hover:text-white dark:text-slate-400 dark:hover:text-white' }}"
         >
-            About
+            {{ __('About') }}
         </a>
         <a
             href="{{ route('contact') }}"
             class="block rounded-md px-3 py-2 {{ request()->routeIs('contact') ? 'bg-sky-500 text-white' : 'text-slate-700 transition-colors hover:bg-sky-500 hover:text-white dark:text-slate-400 dark:hover:text-white' }}"
         >
-            Contact
+            {{ __('Contact') }}
         </a>
     </div>
 
