@@ -108,8 +108,8 @@
                 </div>
             </div>
 
-            <div class="language-switcher ml-4">
-                <a href="{{ route('lang', ['locale' => 'en']) }}" class="text-slate-600 hover:text-sky-500 dark:text-slate-400 dark:hover:text-sky-500 {{ App::getLocale() === 'en' ? 'font-bold' : '' }}">EN</a> | 
+            <div class="language-switcher ml-4 hidden md:block">
+                <a href="{{ route('lang', ['locale' => 'en']) }}" class="text-slate-600 hover:text-sky-500 dark:text-slate-400 dark:hover:text-sky-500 {{ App::getLocale() === 'en' ? 'font-bold' : '' }}">EN</a> |
                 <a href="{{ route('lang', ['locale' => 'es']) }}" class="text-slate-600 hover:text-sky-500 dark:text-slate-400 dark:hover:text-sky-500 {{ App::getLocale() === 'es' ? 'font-bold' : '' }}">ES</a>
             </div>
 
@@ -195,6 +195,26 @@
         >
             {{ __('Contact') }}
         </a>
+        @auth
+        <a
+            href="{{ route('admin',['user' => auth()->user()->id]) }}"
+            class="block rounded-md px-3 py-2 {{ request()->routeIs('admin') ? 'bg-sky-500 text-white' : 'text-slate-700 transition-colors hover:bg-sky-500 hover:text-white dark:text-slate-400 dark:hover:text-white' }}"
+        >
+            {{ __('My Posts') }}
+        </a>
+        @endauth
+        <!-- Language Switcher for Mobile -->
+        <div class="flex justify-center space-x-4 pt-2">
+            <a href="{{ route('lang', ['locale' => 'en']) }}"
+               class="text-slate-700 hover:text-sky-500 dark:text-slate-400 dark:hover:text-sky-500 {{ App::getLocale() === 'en' ? 'font-bold' : '' }}">
+                EN
+            </a>
+            <span class="text-slate-700 dark:text-slate-400">|</span>
+            <a href="{{ route('lang', ['locale' => 'es']) }}"
+               class="text-slate-700 hover:text-sky-500 dark:text-slate-400 dark:hover:text-sky-500 {{ App::getLocale() === 'es' ? 'font-bold' : '' }}">
+                ES
+            </a>
+        </div>
     </div>
 
 </header>
