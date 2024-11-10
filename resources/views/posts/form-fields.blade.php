@@ -1,4 +1,5 @@
 <div>
+<div>
     <x-input-label for="title" :value="__('Title')" />
     <x-text-input id="title"
                   name="title"
@@ -44,5 +45,15 @@
     <x-input-error class="mt-2" :messages="$errors->get('image')" />
 </div>
 
+<!-- SE AGREGA EL CAMPO DE CATEGORÍA -->
+<div>
+    <x-input-label for="category_id" :value="__('Category')" />
+    <select name="category_id" id="category_id" class="block w-full mt-1 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-sky-500 dark:focus:border-sky-600 focus:ring-sky-500 dark:focus:ring-sky-600 rounded-md shadow-sm">
+        @foreach( \App\Models\Category::all() as $category)
+            <option value="{{ $category->id }}" {{ old('category_id', $post->category_id) == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+        @endforeach
+    </select>
+    <x-input-error :messages="$errors->get('category_id')" class="mt-2" />
+</div>
 
-
+</div>
